@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Recommendation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="branding">
+                <h1>Netflix Recommendation System</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="/">Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="showcase">
+        <div class="container">
+            <h1>Find Your Next Binge-Watch</h1>
+            <p>Enter the title of a show or movie you like, and get recommendations for similar content!</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div id="recommendation-form">
+            <form action="/recommend" method="post">
+                <input type="text" name="title" placeholder="Enter a title...">
+                <input type="submit" value="Get Recommendations">
+            </form>
+        </div>
+
+        {% if recommendations %}
+        <div id="recommendations">
+            <h3>Recommended Titles:</h3>
+            <ul>
+                {% for rec in recommendations %}
+                <li>{{ rec }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
